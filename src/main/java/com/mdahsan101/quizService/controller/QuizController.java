@@ -1,14 +1,18 @@
 package com.mdahsan101.quizService.controller;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.mdahsan101.quizService.quizservices.QuizServices;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/quiz")
 public class QuizController {
 
-    public void createQuiz(){
+    @Autowired
+    QuizServices quizServices;
 
+    @GetMapping(path = "/createquiz/{cat}/{noq}")
+    public void createQuiz(@PathVariable("cat") String category, @PathVariable("noq") Integer noq){
+        System.out.println(quizServices.getQuestionIdsFromQuestionService(category,noq));
     }
 }

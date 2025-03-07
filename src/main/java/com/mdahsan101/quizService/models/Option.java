@@ -6,8 +6,6 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name="options_table")
 @NoArgsConstructor
 @Data
 public class Option {
@@ -17,8 +15,6 @@ public class Option {
         this.optionDescription = optionDescription;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer id;
 
     public Integer optionNumber;
@@ -26,9 +22,6 @@ public class Option {
     @NotEmpty
     public String optionDescription;
 
-    @ManyToOne
-    @JoinColumn(name="qId")
-    @JsonIgnore
     public Question question;
 
     @Override

@@ -11,8 +11,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
-@Table(name="questions_table")
 @Data
 @NoArgsConstructor
 public class Question {
@@ -25,24 +23,18 @@ public class Question {
         this.answer = answer;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer qId;
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     @Size(min=2,max=2)
     @NotEmpty
     public List<Option> options;
 
-    @Column(name = "description")
     @NotEmpty
     public String qDescription;
 
-    @Column(name="category")
     @Nullable
     public String qCategory;
 
-    @Column(name="marks")
     @Min(1)
     @Max(5)
     public Integer qMarks;
